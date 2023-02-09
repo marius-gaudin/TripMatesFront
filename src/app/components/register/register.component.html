@@ -1,0 +1,28 @@
+<div class="content">
+    <img class="logo" src="../../../assets/logo.png">
+    <p class="errors">{{errors}}</p>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+            <label>Email</label>
+            <input formControlName="email" type="email">
+        </div>
+        <div class="field">
+            <label>Nom</label>
+            <input formControlName="lastName" type="text">
+        </div>
+        <div class="field">
+            <label>Prénom</label>
+            <input formControlName="firstName" type="text">
+        </div>
+        <div class="field">
+            <label>Mot de passe</label>
+            <input formControlName="password" type="password">
+        </div>
+        <div class="field">
+            <label>Confirmer Mot de passe</label>
+            <input formControlName="confirmPassword" type="password">
+        </div>
+        <button type="submit" [disabled]="!registerForm.valid">Créer un compte</button>
+        <a [routerLink]="['/login']">Se connecter</a>
+    </form>
+</div>

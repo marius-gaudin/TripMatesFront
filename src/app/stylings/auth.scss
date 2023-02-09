@@ -1,0 +1,85 @@
+@import "theme";
+
+.content {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .errors {
+        margin: .1rem;
+        color: $warn;
+        font-weight: bold;
+    }
+    .logo {
+        width: 9rem;
+    }
+    form {
+        width: 300px;
+        .field {
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            label {
+                font-weight: bold;
+                font-size: 1rem;
+            }
+
+            input {
+                color: $dark;
+                padding-left: .5rem;
+                border: solid 2px transparent;
+                font-size: 1.3rem;
+                background-color: transparent;
+                margin-top: .3rem;
+                outline: none;
+            }
+        }
+
+        .field:has(input:focus) {
+            input {
+                border-color: $accent;
+            }
+            label {
+                color: $accent;
+            }
+        }
+    }
+
+    button {
+        margin-top: 2rem;
+        width: 100%;
+        background-color: $accent;
+        border: none;
+        color: $dark;
+        font-size: 1rem;
+        transition: all .1s;
+        font-weight: bold;
+
+        &:not(:disabled):hover {
+            color: $accent;
+            background-color: $dark;
+        }
+        &:disabled {
+            opacity: .7;
+        }
+    }
+
+    button, input {
+        height: 2.5rem;
+        border-radius: 4px;
+        box-shadow: 0px 0px 4px rgba($color: $dark, $alpha: .3);
+    }
+    
+    a {
+        font-style: italic;
+        font-size: 1rem;
+        display: block;
+        margin-top: .5rem;
+        color: $primary;
+        &:hover {
+            color: $dark;
+        }
+    }
+}

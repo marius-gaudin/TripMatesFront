@@ -1,0 +1,16 @@
+<div class="content">
+    <img class="logo" src="../../../assets/logo.png">
+    <p class="errors">{{errors}}</p>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+            <label>Email</label>
+            <input formControlName="email" type="email" (onblur)="checkEmailErrors()">
+        </div>
+        <div class="field">
+            <label>Mot de passe</label>
+            <input formControlName="password" type="password">
+        </div>
+        <button type="submit" [disabled]="!loginForm.valid">Se connecter</button>
+        <a [routerLink]="['/register']">Créer un compte</a>
+    </form>
+</div>
