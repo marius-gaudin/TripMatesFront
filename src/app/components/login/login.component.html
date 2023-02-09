@@ -4,7 +4,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="field">
             <label>Email</label>
-            <input formControlName="email" type="email" (onblur)="checkEmailErrors()">
+            <input formControlName="email" type="email" (blur)="checkEmailErrors()">
         </div>
         <div class="field">
             <label>Mot de passe</label>

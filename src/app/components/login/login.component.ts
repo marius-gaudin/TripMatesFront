@@ -34,7 +34,6 @@ export class LoginComponent {
   constructor(private router: Router, private formBuilder: FormBuilder, private apiService: ApiService, private jwtTokenService:JwtTokenService) { }
 
   checkEmailErrors() {
-    console.log('ok');
     this.errors = this.loginForm.get('email')?.errors ? 'Veuillez entrer un email valide' : this.errors;
   }
 

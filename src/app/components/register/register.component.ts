@@ -47,6 +47,10 @@ export class RegisterComponent {
 
   constructor(private router: Router, private formBuilder: FormBuilder, private apiService: ApiService, private jwtTokenService: JwtTokenService) { }
 
+  checkEmailErrors() {
+    this.errors = this.registerForm.get('email')?.errors ? 'Veuillez entrer un email valide' : this.errors;
+  }
+
   onSubmit() {
     const err = 'Erreur veuillez réessayer dans quelque temps';
     this.apiService.register(this.email, this.lastName, this.firstName, this.password, this.confirmPassword).subscribe({
