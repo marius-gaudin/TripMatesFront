@@ -1,0 +1,63 @@
+<div class="content">
+    <div class="first">
+        <h2>16 mars 2023</h2>
+        <div class="description">
+            <div class="hours">
+                <div>
+                    <p>14h00</p>
+                </div>
+                <p>55 min</p>
+                <div>
+                    <p>14h55</p>
+                </div>
+            </div>
+            <div class="line"><div></div><div></div></div>      
+            <div class="adresses">  
+                <div>
+                    <p class="name">Nantes Ynov Campus</p>
+                    <p class="adresse">20 Bd Général de Gaulle</p>
+                    <p class="city">44200 Nantes</p>
+                </div>
+                <div>
+                    <p class="name">Angers Saint-Laud</p>
+                    <p class="adresse">1 Esplanade de la Gare</p>
+                    <p class="city">49100 Angers</p>
+                </div>
+            </div>
+        </div>
+        <div class="passenger">
+            <h3>2 Passagers</h3>
+            <div>
+                <div>
+                    <fa-icon class="icon" [icon]="faUser"></fa-icon>
+                    <p>Marius GAUDIN</p>
+                </div>
+                <div>
+                    <button>Valider</button>
+                    <button class="warn">Refuser</button>
+                </div>
+            </div>
+            <div class="dispo">
+                <div>
+                    <fa-icon class="icon" [icon]="faUser"></fa-icon>
+                    <p>Une place disponible</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="maps">
+        <google-map #map [height]="'100%'" [options]="options">
+            <map-marker 
+                *ngIf="startMarker"
+                [position]="startMarker"
+                icon="./assets/images/start.svg">
+            </map-marker>
+            <map-marker 
+                *ngIf="arrivalMarker"
+                [position]="arrivalMarker"
+                icon="./assets/images/arrival.svg">
+            </map-marker>
+        </google-map>
+    </div>
+    
+</div>

@@ -9,13 +9,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MyRoutesComponent } from './pages/my-routes/my-routes.component';
+import { HeaderComponent } from './components/header/header.component';
+import { RouteComponent } from './components/route/route.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    MyRoutesComponent,
+    HeaderComponent,
+    RouteComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule, 
     ReactiveFormsModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -73,10 +73,11 @@
     }
     
     a {
+        text-align: center;
         font-style: italic;
         font-size: 1rem;
         display: block;
-        margin-top: .5rem;
+        margin-top: 1rem;
         color: $primary;
         &:hover {
             color: $dark;
