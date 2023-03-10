@@ -18,4 +18,8 @@ export class ApiService {
   register(email: string, lastName: string, firstName: string, password: string, confirmPassword: string): Observable<ApiResponse> {
     return this._http.post<ApiResponse>(`${this.url}users/register`, {email, lastName, firstName, password, confirmPassword})
   }
+
+  getTrajets(): Observable<ApiResponse> {
+    return this._http.get<ApiResponse>(`${this.url}trajets/users`);
+  }
 }
