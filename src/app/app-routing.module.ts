@@ -3,14 +3,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthorizeGuard } from './auth/authorize.guard';
 import { TokenInterceptor } from './auth/token.interceptor';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { AddRouteComponent } from './pages/add-route/add-route.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', component: HomeComponent, canActivate: [AuthorizeGuard] }
+  { path: '', component: HomeComponent, canActivate: [AuthorizeGuard] },
+  { path: 'add-route', component: AddRouteComponent, canActivate: [AuthorizeGuard] }
 ];
 
 @NgModule({

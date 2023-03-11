@@ -12,10 +12,14 @@ export class ApiService {
   constructor(private _http: HttpClient) { }
 
   login(email: string, password: string): Observable<ApiResponse> {
-    return this._http.post<ApiResponse>(`${this.url}users/login`, {email, password})
+    return this._http.post<ApiResponse>(`${this.url}users/login`, {email, password});
   }
 
   register(email: string, lastName: string, firstName: string, password: string, confirmPassword: string): Observable<ApiResponse> {
-    return this._http.post<ApiResponse>(`${this.url}users/register`, {email, lastName, firstName, password, confirmPassword})
+    return this._http.post<ApiResponse>(`${this.url}users/register`, {email, lastName, firstName, password, confirmPassword});
+  }
+
+  createRoute(steps: any) {
+    return this._http.post<ApiResponse>(`${this.url}trajets`, {steps});
   }
 }

@@ -1,0 +1,26 @@
+<div class="content">
+    <app-logo></app-logo>
+    <div class="add-route">
+        <form class="card">
+            <div *ngFor="let form of forms; let index = index" [class.active]="index === step" class="fields">
+                <div *ngFor="let field of form" class="field">
+                    <label *ngIf="field?.label">{{field.label}}</label>
+                    <div class="input">
+                        <fa-icon class="icon" [icon]="field.icon"></fa-icon>
+                        <input *ngIf="field.type === typeBouton" [value]="field.value" (click)="field.action(form)" [type]="field.type">
+                        <input *ngIf="typePoint !== field.type && typeBouton !== field.type" [(ngModel)]="field.value" [type]="field.type" [ngModelOptions]="{standalone: true}">
+                        <input *ngIf="typePoint === field.type" [value]="field.value" placeholder="" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event, field)"/>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                <button *ngIf="forms.length-1 !== step" (click)="next()">Continuer</button>
+                <button *ngIf="forms.length-1 === step" class="accent" (click)="create()">Créer un trajet</button>
+                <div class="steps">
+                    <div *ngFor="let f of forms; let index = index;" (click)="step = index" [class.active]="index === step"></div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

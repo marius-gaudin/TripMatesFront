@@ -1,0 +1,26 @@
+button {
+    font-family: 'Calibri';
+    font-size: 1.2rem;
+    background-color: $dark;
+    color: $light;
+    font-weight: bold;
+    padding: 10px 25px;
+    border: solid 2.5px $dark;
+    border-radius: 5px;
+    transition: all .3s;
+    box-shadow: 0 0 10px rgba($color: $dark, $alpha: 0.2);
+    &.accent {
+        border-color: $accent;
+        background-color: $accent;
+        color: $dark;
+    }
+}
+
+button:hover {
+    color: $dark;
+    background-color: $light;
+    &.accent {
+        background-color: $dark;
+        color: $accent;
+    }
+}

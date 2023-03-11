@@ -50,7 +50,7 @@ export class LoginComponent {
         }
       },
       error: (error) => {
-        console.log(error)
+        console.log(error);
         if(error?.error?.errorMessage) {
           this.errors = error.error.errorMessage;
         } else {

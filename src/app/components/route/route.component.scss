@@ -1,0 +1,77 @@
+@import 'theme';
+@import 'card';
+
+$cursorWidth: 20px;
+
+.route {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    .content {
+        padding: 2rem;
+        > h3 {
+            margin: 0;
+            margin-bottom: 2rem;
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+        > div {
+            display: flex;
+            
+            p {
+                margin: 0;
+            }
+
+            .hours, .adresses {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                > div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    height: 6rem;
+                }
+
+                .hour {
+                    font-weight: 700;
+                    font-size: 1.2rem;
+                }
+
+                .time {
+                    margin: 2rem 0;
+                    color: #292b2c;
+                }
+            }
+
+            .cursor {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: $cursorWidth;
+                background-color: $accent;
+                margin: 2.2rem 1.5rem;
+                border-radius: 10px;
+                > div {
+                    margin: 3px;
+                    width: calc($cursorWidth - 6px);
+                    height: calc($cursorWidth - 6px);
+                    background-color: $light;
+                    border-radius: 50%;
+                }
+            }
+
+            .adresses {
+                > div {
+                    justify-content: space-between;
+                    .name {
+                        font-size: 1.3rem;
+                    }
+                    .city {
+                        color: #292b2c;
+                    }
+                }
+            }
+        }
+    }
+}
