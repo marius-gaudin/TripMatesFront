@@ -1,0 +1,28 @@
+@import 'theme';
+
+div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    svg {
+        width: 23%;
+        height: auto;
+        fill: $accent;
+    }
+    
+    p {
+        font-family: 'OpenSans';
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        color: $dark;
+        span {
+            color: $primary;
+        }
+    }
+}

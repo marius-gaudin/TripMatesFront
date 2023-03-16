@@ -46,18 +46,12 @@
         </div>
     </div>
     <div class="maps">
-        <google-map #map [height]="'100%'" [options]="options">
-            <map-marker 
-                *ngIf="startMarker"
-                [position]="startMarker"
-                icon="./assets/images/start.svg">
-            </map-marker>
-            <map-marker 
-                *ngIf="arrivalMarker"
-                [position]="arrivalMarker"
-                icon="./assets/images/arrival.svg">
-            </map-marker>
-        </google-map>
+        <google-map #map [options]="options" width="500px" height="100%">
+	        <map-marker [position]="ynovMarker" icon="../../../assets/images/start.svg">
+	        </map-marker>
+	        <map-marker [position]="angersMarker" icon="../../../assets/images/arrival.svg">
+	        </map-marker>
+	    </google-map>
     </div>
     
 </div>
