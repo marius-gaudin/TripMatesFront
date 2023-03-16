@@ -1,5 +1,8 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { Route } from 'src/app/models/route';
+import { Step } from 'src/app/models/step';
+import { PlaceApiService } from 'src/app/services/place-api.service';
 
 @Component({
   selector: 'app-route',
@@ -9,6 +12,8 @@ import { faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 export class RouteComponent {
 
   @ViewChild('map') map: google.maps.Map | undefined
+  faUser: IconDefinition = faUser;
+  @Input() route: Route | undefined;
   
   options: google.maps.MapOptions = {
     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -36,15 +41,21 @@ export class RouteComponent {
     suppressMarkers: true
   });
 
-  constructor() {}
+  constructor(private placeApiService: PlaceApiService) {
+  }
 
   ngAfterViewInit() {
+    console.log(this.route);
+    if(this.route?.steps[0].positionDepart.address) {
+      this.placeApiService.searchPlace(this.route.steps[0].positionDepart.address).then(res => {
+        console.log(res);
+      });
+    }
     this.fitBounds();
     this.setRoutePolyline();
   }
 
   fitBounds() {    
-    console.log('ici')
     if(this.map) {  
       const bounds = new google.maps.LatLngBounds();
       bounds.extend(this.ynovMarker);

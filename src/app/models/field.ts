@@ -1,5 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { Adresse } from "./adresse";
+import { Address } from "./address";
 
 export interface Field {
     label?: string,
@@ -7,5 +7,5 @@ export interface Field {
     type: string,
     value: any,
     action?: any,
-    adresse?: Adresse
+    adresse?: Address
 }

@@ -2,9 +2,6 @@
     <h1>Vos trajets</h1>
     <div>
         <fa-icon class="notification" [icon]="faExclamation"></fa-icon>
-        <app-route></app-route>
-    </div>
-    <div>
-        <app-route></app-route>
+        <app-route *ngFor="let trajet of (trajets$ | async)?.result" [route]="trajet"></app-route>
     </div>
 </div>

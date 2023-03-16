@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PlaceResult } from '../models/placeResult';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +12,7 @@ export class PlaceApiService {
 
   constructor(private _http: HttpClient) { }
 
-  searchPlace(text: string): Observable<PlaceResult[]> {
-    return this._http.get<PlaceResult[]>(`${this.urlTextSearch}${text}${this.key}`);
+  searchPlace(text: string): Promise<any> {
+    return fetch(`${this.urlTextSearch}${text}${this.key}`);
   }
 }

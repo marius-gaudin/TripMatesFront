@@ -75,12 +75,12 @@ export class AddRouteComponent {
         departTime: this.date.value,
         positionDepart: {
           city: this.startingPoint.adresse?.city,
-          address: this.startingPoint.adresse?.adresse,
+          address: this.startingPoint.adresse?.address,
           pc: 0
         },
         positionArrival: {
           city: this.arrivalPoint.adresse?.city,
-          address: this.arrivalPoint.adresse?.adresse,
+          address: this.arrivalPoint.adresse?.address,
           pc: 0
         },
         duration: 60,
@@ -103,7 +103,7 @@ export class AddRouteComponent {
   handleAddressChange(address: Address, field: Field) {
     field.value = address.formatted_address;
     let city = address.address_components.find(adr => adr.types.includes('locality'))?.long_name ?? undefined;
-    field.adresse = {city, adresse: address.formatted_address};
+    field.adresse = {city, address: address.formatted_address};
     console.log(address);
     console.log(this.form1);
     console.log(this.form2);

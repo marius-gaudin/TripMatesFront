@@ -17,7 +17,8 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.jwtTokenService.getToken()
     let newRequest = request
-    if(token !== null) {
+    if(token !== null && request.url.includes('https://tripmateapi.azurewebsites.net')) {
+      console.log('ok');
       newRequest = request.clone({
         headers: request.headers.set('Authorization', `bearer ${token}`)
       })
