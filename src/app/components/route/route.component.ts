@@ -2,7 +2,6 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Route } from 'src/app/models/route';
 import { Step } from 'src/app/models/step';
-import { PlaceApiService } from 'src/app/services/place-api.service';
 
 @Component({
   selector: 'app-route',
@@ -41,16 +40,11 @@ export class RouteComponent {
     suppressMarkers: true
   });
 
-  constructor(private placeApiService: PlaceApiService) {
+  constructor() {
   }
 
   ngAfterViewInit() {
     console.log(this.route);
-    if(this.route?.steps[0].positionDepart.address) {
-      this.placeApiService.searchPlace(this.route.steps[0].positionDepart.address).then(res => {
-        console.log(res);
-      });
-    }
     this.fitBounds();
     this.setRoutePolyline();
   }
