@@ -1,7 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { faUser, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Route } from 'src/app/models/route';
-import { Step } from 'src/app/models/step';
 
 @Component({
   selector: 'app-route',
@@ -36,7 +35,6 @@ export class RouteComponent {
   }
 
   ngAfterViewInit() {
-    console.log(this.route);
     if(!this.route) return;
     if(this.route.steps[0].positionDepart.latitude && this.route.steps[0].positionDepart.longitude) {
       this.markers.push({lat: this.route.steps[0].positionDepart.latitude, lng: this.route.steps[0].positionDepart.longitude});
@@ -65,6 +63,7 @@ export class RouteComponent {
     const request = {
       origin: this.markers[0],
       destination: this.markers[this.markers.length-1],
+      waypoints: this.markers.slice(1, this.markers.length).map(mrk => {return {location: mrk, stopover: true}}),
       travelMode: google.maps.TravelMode.DRIVING
     }
 
@@ -76,8 +75,13 @@ export class RouteComponent {
     })
   }
 
-  getArrivalDate(departTime: Date, duration: number): Date {
-    let depart = new Date(departTime);
+  getDate(index: number): Date | undefined {
+    if(!this.route) return;
+    let depart = new Date(this.route.steps[0].departTime);
+    let duration = 0;
+    for(let i=0; i<index; i++) {
+      duration += this.route.steps[i].duration;
+    }
     return new Date(depart.getTime() + duration * 60000);
   }
 

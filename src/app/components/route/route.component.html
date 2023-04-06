@@ -8,12 +8,12 @@
                 </div>
                 <p>{{route.steps[0].duration | date:'shortTime'}}</p>
                 <div>
-                    <p>{{getArrivalDate(route.steps[0].departTime, route.steps[0].duration) | date:'shortTime'}}</p>
+                    <p>{{getDate(1) | date:'shortTime'}}</p>
                 </div>
-                <ng-container *ngFor="let step of route.steps.slice(1)">
+                <ng-container *ngFor="let step of route.steps.slice(1), let index = index">
                     <p>{{step.duration | date:'shortTime'}}</p>
                     <div>
-                        <p>{{getArrivalDate(step.departTime, step.duration) | date:'shortTime'}}</p>
+                        <p>{{getDate(index + 2) | date:'shortTime'}}</p>
                     </div>
                 </ng-container>
             </div>

@@ -66,8 +66,6 @@ export class AddRouteComponent {
     action: this.addNewStep
   }
 
-  steps = [];
-
   form1: Field[] = [this.startingPoint, this.arrivalPoint, this.date, this.numberOfPassengers];
   form2: Field[] = [this.startingPoint, this.addStep, this.arrivalPoint];
 
@@ -82,16 +80,22 @@ export class AddRouteComponent {
   }
 
   create() {
+    let steps: Step[] = [];
     if(!this.startingPoint.adresse || !this.arrivalPoint.adresse) return;
-    let steps: Step[] = [
-      {
-        departTime: this.date.value,
-        positionDepart: this.startingPoint.adresse,
-        positionArrival: this.arrivalPoint.adresse,
-        duration: 60,
-        seats: this.numberOfPassengers.value
+    let allSteps = this.form2.filter(field => field !== this.addStep);
+    allSteps.forEach((field, index) => {
+      let arrival = allSteps[index+1]?.adresse
+      if(index < allSteps.length && field.adresse && arrival) {
+        let step: Step = {
+          departTime: this.date.value,
+          positionDepart: field.adresse,
+          positionArrival: arrival,
+          duration: 60,
+          seats: this.numberOfPassengers.value
+        }
+        steps.push(step);
       }
-    ]
+    });
     this.apiService.createRoute(steps).subscribe(result => console.log(result));
   }
 
@@ -109,16 +113,13 @@ export class AddRouteComponent {
       adr = address.formatted_address;
     }
 
-    console.log('lat : ', latitude, ' - lng : ', longitude);
     field.adresse = {
-        city, 
-        address: adr, 
-        pc, 
-        longitude, 
-        latitude
-      };
-    
-    console.log(address);
+      city, 
+      address: adr, 
+      pc, 
+      longitude, 
+      latitude
+    };
   }
 
 }
