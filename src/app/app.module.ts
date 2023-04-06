@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
 import { GoogleMapsModule } from '@angular/google-maps'
@@ -20,6 +20,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouteComponent } from './components/route/route.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MyRoutesComponent } from './pages/my-routes/my-routes.component';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+// the second parameter 'fr' is optional
+registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
@@ -47,7 +53,7 @@ import { MyRoutesComponent } from './pages/my-routes/my-routes.component';
     MatNativeDateModule,
     GoogleMapsModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

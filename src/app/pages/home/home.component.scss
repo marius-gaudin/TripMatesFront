@@ -1,4 +1,9 @@
-div {
-    width: 50%;
-    margin: 5rem 25rem;
+@import 'theme';
+@import 'button';
+
+.searchBar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -3,6 +3,7 @@ import { faMapMarkerAlt, faCalendarAlt, faCar, faPlus } from '@fortawesome/free-
 import { Field } from 'src/app/models/field';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ApiService } from 'src/app/services/api.service';
+import { Step } from 'src/app/models/step';
 
 @Component({
   selector: 'app-add-route',
@@ -47,6 +48,17 @@ export class AddRouteComponent {
     icon: faCar
   }
 
+  addNewStep = () => {
+    console.log(this.typePoint);
+    const stepField: Field = {
+      label: 'Étape',
+      value: '',
+      type: this.typePoint,
+      icon: faMapMarkerAlt
+    };
+    this.form2.splice(this.form2.length-2, 0, stepField);
+  }
+
   addStep: Field = {
     value: 'Ajouter une étape',
     type: 'button',
@@ -70,19 +82,12 @@ export class AddRouteComponent {
   }
 
   create() {
-    let steps = [
+    if(!this.startingPoint.adresse || !this.arrivalPoint.adresse) return;
+    let steps: Step[] = [
       {
         departTime: this.date.value,
-        positionDepart: {
-          city: this.startingPoint.adresse?.city,
-          address: this.startingPoint.adresse?.address,
-          pc: 0
-        },
-        positionArrival: {
-          city: this.arrivalPoint.adresse?.city,
-          address: this.arrivalPoint.adresse?.address,
-          pc: 0
-        },
+        positionDepart: this.startingPoint.adresse,
+        positionArrival: this.arrivalPoint.adresse,
         duration: 60,
         seats: this.numberOfPassengers.value
       }
@@ -90,23 +95,30 @@ export class AddRouteComponent {
     this.apiService.createRoute(steps).subscribe(result => console.log(result));
   }
 
-  addNewStep(form: Field[]) {
-    const stepField: Field = {
-      label: 'Étape',
-      value: '',
-      type: this.typePoint,
-      icon: faMapMarkerAlt
-    };
-    form.splice(form.length-2, 0, stepField);
-  }
-
   handleAddressChange(address: Address, field: Field) {
     field.value = address.formatted_address;
     let city = address.address_components.find(adr => adr.types.includes('locality'))?.long_name ?? undefined;
-    field.adresse = {city, address: address.formatted_address};
+    let pc = address.address_components.find(adr => adr.types.includes('postal_code'))?.long_name ?? undefined;
+    let latitude = address.geometry.location.lat();
+    let longitude = address.geometry.location.lng();
+
+    let adr = address.address_components.find(adr => adr.types.includes('street_number'))?.long_name ?? '';
+    adr += address.address_components.find(adr => adr.types.includes('route'))?.long_name ?? '';
+
+    if(adr === '') {
+      adr = address.formatted_address;
+    }
+
+    console.log('lat : ', latitude, ' - lng : ', longitude);
+    field.adresse = {
+        city, 
+        address: adr, 
+        pc, 
+        longitude, 
+        latitude
+      };
+    
     console.log(address);
-    console.log(this.form1);
-    console.log(this.form2);
   }
 
 }

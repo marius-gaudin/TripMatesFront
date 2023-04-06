@@ -4,5 +4,6 @@ export interface Step {
     departTime: Date,
     positionDepart: Address,
     positionArrival: Address,
-    duration: number
+    duration: number,
+    seats: number
 }

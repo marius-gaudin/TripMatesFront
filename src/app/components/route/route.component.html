@@ -1,27 +1,31 @@
-<div class="content">
+<div *ngIf="route" class="content">
     <div class="first">
-        <h2>16 mars 2023</h2>
+        <h2>{{route.steps[0].departTime | date:'mediumDate'}}</h2>
         <div class="description">
             <div class="hours">
                 <div>
-                    <p>14h00</p>
+                    <p>{{route.steps[0].departTime | date:'shortTime'}}</p>
                 </div>
-                <p>55 min</p>
+                <p>{{route.steps[0].duration | date:'shortTime'}}</p>
                 <div>
-                    <p>14h55</p>
+                    <p>{{getArrivalDate(route.steps[0].departTime, route.steps[0].duration) | date:'shortTime'}}</p>
                 </div>
+                <ng-container *ngFor="let step of route.steps.slice(1)">
+                    <p>{{step.duration | date:'shortTime'}}</p>
+                    <div>
+                        <p>{{getArrivalDate(step.departTime, step.duration) | date:'shortTime'}}</p>
+                    </div>
+                </ng-container>
             </div>
             <div class="line"><div></div><div></div></div>      
             <div class="adresses">  
                 <div>
-                    <p class="name">Nantes Ynov Campus</p>
-                    <p class="adresse">20 Bd Général de Gaulle</p>
-                    <p class="city">44200 Nantes</p>
+                    <p class="name">{{route.steps[0].positionDepart.address}}</p>
+                    <p class="city">{{route.steps[0].positionDepart.pc}} {{route.steps[0].positionDepart.city}}</p>
                 </div>
-                <div>
-                    <p class="name">Angers Saint-Laud</p>
-                    <p class="adresse">1 Esplanade de la Gare</p>
-                    <p class="city">49100 Angers</p>
+                <div *ngFor="let step of route.steps">
+                    <p class="name">{{step.positionArrival.address}}</p>
+                    <p class="city">{{step.positionArrival.pc}} {{step.positionArrival.city}}</p>
                 </div>
             </div>
         </div>
@@ -47,9 +51,7 @@
     </div>
     <div class="maps">
         <google-map #map [options]="options" width="500px" height="100%">
-	        <map-marker [position]="ynovMarker" icon="../../../assets/images/start.svg">
-	        </map-marker>
-	        <map-marker [position]="angersMarker" icon="../../../assets/images/arrival.svg">
+	        <map-marker *ngFor="let marker of markers; let index = index" [position]="marker" [icon]="index !== markers.length-1 ? '../../../assets/images/start.svg' : '../../../assets/images/arrival.svg'">
 	        </map-marker>
 	    </google-map>
     </div>

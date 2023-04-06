@@ -21,18 +21,10 @@ export class RouteComponent {
     fullscreenControl: false,
     mapTypeControl: false,
     zoomControl: false,
-	draggable: false
+	  draggable: false
   };
 
-  ynovMarker: google.maps.LatLngLiteral = {
-    lat: 47.205627989471786, 
-    lng: -1.539325073169787
-  }
-
-  angersMarker: google.maps.LatLngLiteral = {
-    lat: 47.464668983538836,
-    lng: -0.5562027040525435
-  }
+  markers: google.maps.LatLngLiteral[] = [];
 
   ds: google.maps.DirectionsService = new google.maps.DirectionsService();
   dr: google.maps.DirectionsRenderer = new google.maps.DirectionsRenderer({
@@ -45,6 +37,16 @@ export class RouteComponent {
 
   ngAfterViewInit() {
     console.log(this.route);
+    if(!this.route) return;
+    if(this.route.steps[0].positionDepart.latitude && this.route.steps[0].positionDepart.longitude) {
+      this.markers.push({lat: this.route.steps[0].positionDepart.latitude, lng: this.route.steps[0].positionDepart.longitude});
+    }
+    this.route.steps.forEach(step => {
+      if(step.positionArrival.latitude && step.positionArrival.longitude) {
+        this.markers.push({lat: step.positionArrival.latitude, lng: step.positionArrival.longitude});
+      }
+    });
+    console.log(this.markers);
     this.fitBounds();
     this.setRoutePolyline();
   }
@@ -52,16 +54,17 @@ export class RouteComponent {
   fitBounds() {    
     if(this.map) {  
       const bounds = new google.maps.LatLngBounds();
-      bounds.extend(this.ynovMarker);
-      bounds.extend(this.angersMarker);
+      this.markers.forEach(marker => {
+        bounds.extend(marker);
+      })
       this.map.fitBounds(bounds);
     }
   }
 
   setRoutePolyline() {
     const request = {
-      origin: this.ynovMarker,
-      destination: this.angersMarker,
+      origin: this.markers[0],
+      destination: this.markers[this.markers.length-1],
       travelMode: google.maps.TravelMode.DRIVING
     }
 
@@ -71,6 +74,11 @@ export class RouteComponent {
         this.dr.setDirections(response);
       }
     })
+  }
+
+  getArrivalDate(departTime: Date, duration: number): Date {
+    let depart = new Date(departTime);
+    return new Date(depart.getTime() + duration * 60000);
   }
 
 }
