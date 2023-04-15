@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Address as GgAdrress } from 'ngx-google-places-autocomplete/objects/address';
 import { Address } from 'src/app/models/address';
+import { Route } from 'src/app/models/route';
 import { ApiService } from 'src/app/services/api.service';
 import { JwtTokenService } from 'src/app/services/jwt-token.service';
 
@@ -13,6 +14,8 @@ import { JwtTokenService } from 'src/app/services/jwt-token.service';
 export class HomeComponent {
   depart: string = '';
   arrive: string = '';
+
+  result: Route[] | undefined;
 
   objDepart: Address | null = null;
   objArrive: Address | null = null;
@@ -34,7 +37,9 @@ export class HomeComponent {
     console.log(this.objArrive);
     console.log(this.date);
     this.apiService.search(this.objDepart, this.objArrive, this.date).subscribe(res => {
-      console.log(res);
+      if(res.isSuccess) {
+        this.result = res.result;
+      }
     })
   }
 

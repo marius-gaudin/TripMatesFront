@@ -1,0 +1,16 @@
+.slider {
+    position: relative;
+    mat-slider {
+        position: absolute;
+    }
+    .points {
+        margin-left: 25px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        p {
+            margin: 0;
+        }
+    }
+}

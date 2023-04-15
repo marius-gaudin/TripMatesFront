@@ -12,3 +12,7 @@
     <button (click)="search()" class="accent">Rechercher</button>
 </div>
 <button (click)="logout()">Logout</button>
+
+<a *ngFor="let route of result" [routerLink]="['/detail', route.id]">
+    <app-route  [route]="route"></app-route>
+</a>

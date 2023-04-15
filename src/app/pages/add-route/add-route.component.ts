@@ -4,6 +4,7 @@ import { Field } from 'src/app/models/field';
 import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { ApiService } from 'src/app/services/api.service';
 import { Step } from 'src/app/models/step';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-route',
@@ -73,7 +74,7 @@ export class AddRouteComponent {
 
   step: number = 0;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   next() {
     this.step++;
@@ -96,7 +97,9 @@ export class AddRouteComponent {
         steps.push(step);
       }
     });
-    this.apiService.createRoute(steps).subscribe(result => console.log(result));
+    this.apiService.createRoute(steps).subscribe(result => {
+      this.router.navigate(['my-route']);
+    });
   }
 
   handleAddressChange(address: Address, field: Field) {
@@ -107,6 +110,9 @@ export class AddRouteComponent {
     let longitude = address.geometry.location.lng();
 
     let adr = address.address_components.find(adr => adr.types.includes('street_number'))?.long_name ?? '';
+    if(adr.length > 0) {
+      adr+=' ';
+    }
     adr += address.address_components.find(adr => adr.types.includes('route'))?.long_name ?? '';
 
     if(adr === '') {

@@ -8,13 +8,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { MyRoutesComponent } from './pages/my-routes/my-routes.component';
+import { RouteDetailsComponent } from './pages/route-details/route-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', component: HomeComponent, canActivate: [AuthorizeGuard] },
   { path: 'add-route', component: AddRouteComponent, canActivate: [AuthorizeGuard] },
-  { path: 'my-route', component: MyRoutesComponent }
+  { path: 'my-route', component: MyRoutesComponent, canActivate: [AuthorizeGuard] },
+  { path: 'detail/:id', component: RouteDetailsComponent, canActivate: [AuthorizeGuard] }
 ];
 
 @NgModule({
