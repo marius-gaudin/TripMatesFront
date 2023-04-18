@@ -25,11 +25,31 @@ export class ApiService {
     return this._http.post<ApiResponse>(`${this.url}trajets`, {steps});
   }
 
-  getTrajets(): Observable<ApiResponse> {
+  getUserRoutes(): Observable<ApiResponse> {
     return this._http.get<ApiResponse>(`${this.url}trajets/users`);
   }
 
   search(positionDepart: Address | null, positionArrival: Address | null, minDepartTime: string | null): Observable<ApiResponse> {
-    return this._http.post<ApiResponse>(`${this.url}trajets/query`, {positionDepart, positionArrival, minDepartTime});
+    return this._http.post<ApiResponse>(`${this.url}trajets/query`, { positionDepart, positionArrival, minDepartTime });
+  }
+
+  getRoute(id: number): Observable<ApiResponse> {
+    return this._http.get<ApiResponse>(`${this.url}trajets/${id}`);
+  }
+
+  getUserRegistration(): Observable<ApiResponse> {
+    return this._http.get<ApiResponse>(`${this.url}trajets/Userinscriptions`);
+  }
+
+  getRouteRegistration(id: number): Observable<ApiResponse> {
+    return this._http.get<ApiResponse>(`${this.url}trajets/inscriptions/${id}`);
+  }
+
+  validRegistration(registrationId: number): Observable<ApiResponse> {
+    return this._http.post<ApiResponse>(`${this.url}trajets/valider/${registrationId}`, { inscriptionId: registrationId });
+  }
+
+  registration(routeId:number, steps: number[]) {
+    return this._http.post<ApiResponse>(`${this.url}trajets/${routeId}`, { trajetId: routeId, steps });
   }
 }

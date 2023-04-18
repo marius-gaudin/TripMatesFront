@@ -4,4 +4,7 @@
         <fa-icon class="notification" [icon]="faExclamation"></fa-icon>
         <app-route [route]="trajet"></app-route>
     </div>
+    <div *ngFor="let trajet of (registrations$ | async)?.result">
+        <app-route [route]="trajet"></app-route>
+    </div>
 </div>

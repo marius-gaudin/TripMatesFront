@@ -12,8 +12,12 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class MyRoutesComponent {
   faExclamation: IconDefinition = faExclamation;
-  trajets$: Observable<ApiResponse> = this.apiService.getTrajets();
+  trajets$: Observable<ApiResponse> = this.apiService.getUserRoutes();
+  registrations$: Observable<ApiResponse> = this.apiService.getUserRegistration();
 
   constructor(private apiService: ApiService) {
+    this.apiService.getUserRegistration().subscribe(result => {
+      console.log(result);
+    })
   }
 }

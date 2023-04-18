@@ -1,18 +1,37 @@
-<div class="searchBar">
-    <div>
-        <input [value]="depart" placeholder="Départ" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="objDepart = handleAddressChange($event, objDepart)"/>
-    </div>
-    <div>
-        <input [value]="depart" placeholder="Arrivé" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="objArrive = handleAddressChange($event, objArrive)"/>
-    </div>
+<app-logo></app-logo>
+<form class="searchBar">
+    <div class="fields">
+        <div class="field">
+            <label>Départ</label>
+            <div class="input">
+                <fa-icon class="icon" [icon]="faMapMarkerAlt"></fa-icon>
+                <input [value]="depart" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="objDepart = handleAddressChange($event, objDepart)"/>
+            </div>
+        </div>
+        
+        <div class="field">
+            <label>Arrivé</label>
+            <div class="input">
+                <fa-icon class="icon" [icon]="faMapMarkerAlt"></fa-icon>
+                <input [value]="depart" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="objArrive = handleAddressChange($event, objArrive)"/>
+            </div>
+        </div>
+        
+        <div class="field">
+            <label>Quand ?</label>
+            <div class="input">
+                <fa-icon class="icon" [icon]="faMapMarkerAlt"></fa-icon>
+                <input [(ngModel)]="date" type="datetime-local">
+            </div>
+        </div>
 
-    <div>
-        <input [(ngModel)]="date" type="datetime-local">
-    </div>
-    <button (click)="search()" class="accent">Rechercher</button>
-</div>
-<button (click)="logout()">Logout</button>
+        <button (click)="search()" class="accent">Rechercher</button>
+    </div> 
+</form>
+<!-- <button (click)="logout()">Logout</button> -->
 
 <a *ngFor="let route of result" [routerLink]="['/detail', route.id]">
     <app-route  [route]="route"></app-route>
 </a>
+
+<img class="defaultImg" src="../../../assets/images/home.jpg">

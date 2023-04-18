@@ -1,24 +1,22 @@
-<p>route-details works! {{id}}</p>
-<fieldset>
+<fieldset *ngIf="route">
     <legend>Sélectionner le trajet que vous souhaitez faire</legend>
-    departure : {{departure}}
-    arrival : {{arrival}}
-    <div class="slider" [style.height.px]="60*trajet.length">
+    <div class="slider" [style.height.px]="60*route.steps.length">
         <mat-slider
-            [style.width.px]="(60*trajet.length)-16"
-            [style.transform]="'rotate(90deg) translateX('+(((60*trajet.length)/2)-24)+'px) translateY('+((60*trajet.length)/2)+'px)'"
-            [max]="trajet.length-1"
+            [style.width.px]="(60*route.steps.length)-16"
+            [style.transform]="'rotate(90deg) translateX('+(((60*route.steps.length)/2)-24)+'px) translateY('+((60*route.steps.length)/2)+'px)'"
+            [max]="route.steps.length"
             [min]="0"
             [step]="1"
             [showTickMarks]="true">
             <input [(ngModel)]="departure" matSliderStartThumb>
             <input [(ngModel)]="arrival" matSliderEndThumb>
         </mat-slider>
-        <div class="points">
-            <p *ngFor="let point of trajet; let index=index">
-                {{point}}
+        <div class="points" *ngIf="route.steps.length > 1">
+            <p>{{route.steps[0].positionDepart.address}}</p>
+            <p *ngFor="let point of route.steps; let index=index">
+                {{point.positionArrival.address}}
             </p>
         </div>
+        <button (click)="registration()">Valider</button>
     </div>
-
 </fieldset>

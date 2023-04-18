@@ -88,6 +88,7 @@ export class AddRouteComponent {
       let arrival = allSteps[index+1]?.adresse
       if(index < allSteps.length && field.adresse && arrival) {
         let step: Step = {
+          id: undefined,
           departTime: this.date.value,
           positionDepart: field.adresse,
           positionArrival: arrival,
