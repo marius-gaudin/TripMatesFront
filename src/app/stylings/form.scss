@@ -41,10 +41,7 @@ form {
                     outline: none;     
                 }
                 ::-webkit-calendar-picker-indicator {
-                    background-color: red;
-                    position: absolute;
-                    width: 100%;
-                    opacity: 0;
+                    display: none;
                 }
             }
 

@@ -1,10 +1,11 @@
+<app-header></app-header>
 <div class="content">
     <h1>Vos trajets</h1>
     <div *ngFor="let trajet of (trajets$ | async)?.result">
         <fa-icon class="notification" [icon]="faExclamation"></fa-icon>
         <app-route [route]="trajet"></app-route>
     </div>
-    <div *ngFor="let trajet of (registrations$ | async)?.result">
+    <!-- <div *ngFor="let trajet of (registrations$ | async)?.result">
         <app-route [route]="trajet"></app-route>
-    </div>
+    </div> -->
 </div>

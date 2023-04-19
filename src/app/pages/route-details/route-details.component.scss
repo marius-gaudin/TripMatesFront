@@ -1,3 +1,46 @@
+
+@import 'theme';
+@import 'button';
+
+.content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .detail {
+        margin-top: 100px;
+        max-width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        .driver {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .icon {
+                width: 30px;
+                height: 30px;
+                background-color: $dark;
+                border-radius: 50%;
+                color: $light;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 10px;
+            }
+            p {
+                margin: 0;
+            }
+        }
+
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
 .slider {
     position: relative;
     mat-slider {

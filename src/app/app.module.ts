@@ -25,7 +25,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { RouteDetailsComponent } from './pages/route-details/route-details.component';
 import { ConfirmPassengersComponent } from './components/confirm-passengers/confirm-passengers.component';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatMenuModule } from '@angular/material/menu';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -56,7 +57,8 @@ registerLocaleData(localeFr, 'fr');
     MatInputModule, 
     MatNativeDateModule,
     GoogleMapsModule,
-    MatSliderModule
+    MatSliderModule,
+    MatMenuModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent]

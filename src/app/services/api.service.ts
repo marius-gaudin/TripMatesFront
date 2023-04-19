@@ -50,6 +50,7 @@ export class ApiService {
   }
 
   registration(routeId:number, steps: number[]) {
+    console.log({ trajetId: routeId, steps });
     return this._http.post<ApiResponse>(`${this.url}trajets/${routeId}`, { trajetId: routeId, steps });
   }
 }

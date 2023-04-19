@@ -1,5 +1,6 @@
 <div class="content">
-    <app-logo></app-logo>
+    <app-header></app-header>
+
     <form class="searchBar">
         <div class="fields">
             <div class="field">
@@ -31,9 +32,12 @@
             
         </div> 
     </form>
-    <!-- <button (click)="logout()">Logout</button> -->
         
     <div class="result">
-        <app-route *ngFor="let route of result" [routerLink]="['/detail', route.id]" [route]="route"></app-route>
+        <app-route *ngFor="let route of result" [routerLink]="['/detail', route.id]" [route]="route">
+            <div class="driver">
+                <div class="icon"><fa-icon [icon]="faUser"></fa-icon></div><p>Conducteur : {{ route.driver.firstname }} {{ route.driver.lastname }}</p>
+            </div> 
+        </app-route>
     </div>
 </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Route } from 'src/app/models/route';
 import { ApiService } from 'src/app/services/api.service';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-route-details',
@@ -14,8 +15,9 @@ export class RouteDetailsComponent implements OnInit {
   departure: number = 0;
   arrival: number = 0;
   route: Route | undefined;
+  faUser = faUser;
 
-  constructor(private activatedRoute: ActivatedRoute, private apiService:ApiService){}
+  constructor(private activatedRoute: ActivatedRoute, private apiService:ApiService, private router: Router){}
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
@@ -38,6 +40,7 @@ export class RouteDetailsComponent implements OnInit {
     if(this.departure < this.arrival && this.id && this.route) {
       this.apiService.registration(this.id, this.route.steps.slice(this.departure, this.arrival).map(step => step.id ? step.id : -1)).subscribe(result => {
         console.log(result);
+        this.router.navigate(['/my-route']);
       })
     }
   }

@@ -1,1 +1,10 @@
-<p>header works!</p>
+<nav>
+    <app-logo [routerLink]="['/']"></app-logo>
+
+    <button class="menu" mat-button [matMenuTriggerFor]="menu"><fa-icon [icon]="faUser"></fa-icon></button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/my-route']">Mes Trajets</button>
+        <button mat-menu-item [routerLink]="['/add-route']">Créer un Trajet</button>
+        <button mat-menu-item (click)="logout()">Déconnexion</button>
+    </mat-menu>
+</nav>

@@ -16,7 +16,7 @@ export class MyRoutesComponent {
   registrations$: Observable<ApiResponse> = this.apiService.getUserRegistration();
 
   constructor(private apiService: ApiService) {
-    this.apiService.getUserRegistration().subscribe(result => {
+    this.apiService.getUserRoutes().subscribe(result => {
       console.log(result);
     })
   }
