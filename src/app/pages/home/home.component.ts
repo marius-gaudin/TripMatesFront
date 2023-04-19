@@ -5,7 +5,7 @@ import { Address } from 'src/app/models/address';
 import { Route } from 'src/app/models/route';
 import { ApiService } from 'src/app/services/api.service';
 import { JwtTokenService } from 'src/app/services/jwt-token.service';
-import { faMapMarkerAlt, faCalendarAlt, faCar, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +24,7 @@ export class HomeComponent {
 
   fields = ['address_components', 'formatted_address'];
   faMapMarkerAlt = faMapMarkerAlt;
+  faCalendarAlt = faCalendarAlt;
   
   constructor(private apiService: ApiService, private jwtTokenService: JwtTokenService, private router: Router) { }
   

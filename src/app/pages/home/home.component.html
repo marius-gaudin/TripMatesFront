@@ -1,37 +1,39 @@
-<app-logo></app-logo>
-<form class="searchBar">
-    <div class="fields">
-        <div class="field">
-            <label>Départ</label>
-            <div class="input">
-                <fa-icon class="icon" [icon]="faMapMarkerAlt"></fa-icon>
-                <input [value]="depart" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="objDepart = handleAddressChange($event, objDepart)"/>
+<div class="content">
+    <app-logo></app-logo>
+    <form class="searchBar">
+        <div class="fields">
+            <div class="field">
+                <label>Départ</label>
+                <div class="input">
+                    <fa-icon class="icon" [icon]="faMapMarkerAlt"></fa-icon>
+                    <input [value]="depart" placeholder=" " name="departure" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="objDepart = handleAddressChange($event, objDepart)"/>
+                </div>
             </div>
-        </div>
+            
+            <div class="field">
+                <label>Arrivé</label>
+                <div class="input">
+                    <fa-icon class="icon" [icon]="faMapMarkerAlt"></fa-icon>
+                    <input [value]="depart" placeholder=" " name="arrival" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="objArrive = handleAddressChange($event, objArrive)"/>
+                </div>
+            </div>
+            
+            <div class="field">
+                <label>Quand ?</label>
+                <div class="input">
+                    <fa-icon class="icon" [icon]="faCalendarAlt"></fa-icon>
+                    <input [(ngModel)]="date" name="date" type="datetime-local">
+                </div>
+            </div>
+            <div class="field">
+                <button (click)="search()" class="accent">Rechercher</button>
+            </div>
+            
+        </div> 
+    </form>
+    <!-- <button (click)="logout()">Logout</button> -->
         
-        <div class="field">
-            <label>Arrivé</label>
-            <div class="input">
-                <fa-icon class="icon" [icon]="faMapMarkerAlt"></fa-icon>
-                <input [value]="depart" ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="objArrive = handleAddressChange($event, objArrive)"/>
-            </div>
-        </div>
-        
-        <div class="field">
-            <label>Quand ?</label>
-            <div class="input">
-                <fa-icon class="icon" [icon]="faMapMarkerAlt"></fa-icon>
-                <input [(ngModel)]="date" type="datetime-local">
-            </div>
-        </div>
-
-        <button (click)="search()" class="accent">Rechercher</button>
-    </div> 
-</form>
-<!-- <button (click)="logout()">Logout</button> -->
-
-<a *ngFor="let route of result" [routerLink]="['/detail', route.id]">
-    <app-route  [route]="route"></app-route>
-</a>
-
-<img class="defaultImg" src="../../../assets/images/home.jpg">
+    <div class="result">
+        <app-route *ngFor="let route of result" [routerLink]="['/detail', route.id]" [route]="route"></app-route>
+    </div>
+</div>

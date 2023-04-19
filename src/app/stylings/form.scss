@@ -11,6 +11,9 @@ form {
         flex-direction: column;
         gap: 30px;
         .field {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
             label {
                 display: block;
                 font-size: 1.2rem;
@@ -36,6 +39,12 @@ form {
                     background-color: transparent;
                     border: none; 
                     outline: none;     
+                }
+                ::-webkit-calendar-picker-indicator {
+                    background-color: red;
+                    position: absolute;
+                    width: 100%;
+                    opacity: 0;
                 }
             }
 
