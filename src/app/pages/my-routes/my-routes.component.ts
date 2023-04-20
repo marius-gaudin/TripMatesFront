@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { faExclamation, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { ApiResponse } from 'src/app/models/apiResponse';
-import { Route } from 'src/app/models/route';
 import { ApiService } from 'src/app/services/api.service';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-my-routes',
@@ -14,10 +14,7 @@ export class MyRoutesComponent {
   faExclamation: IconDefinition = faExclamation;
   trajets$: Observable<ApiResponse> = this.apiService.getUserRoutes();
   registrations$: Observable<ApiResponse> = this.apiService.getUserRegistration();
+  faUser = faUser;
 
-  constructor(private apiService: ApiService) {
-    this.apiService.getUserRoutes().subscribe(result => {
-      console.log(result);
-    })
-  }
+  constructor(private apiService: ApiService) { }
 }

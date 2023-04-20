@@ -3,7 +3,21 @@
     <h1>Vos trajets</h1>
     <div *ngFor="let trajet of (trajets$ | async)?.result">
         <fa-icon class="notification" [icon]="faExclamation"></fa-icon>
-        <app-route [route]="trajet"></app-route>
+        <app-route [route]="trajet">
+                <div class="passenger">
+                    <h3>2 Passagers</h3>
+                    <div>
+                        <div>
+                            <fa-icon class="icon" [icon]="faUser"></fa-icon>
+                            <p>Toto tutu</p>
+                        </div>
+                        <div>
+                            <button>Valider</button>
+                            <button class="warn">Refuser</button>
+                        </div>
+                    </div>
+                </div>
+        </app-route>
     </div>
     <!-- <div *ngFor="let trajet of (registrations$ | async)?.result">
         <app-route [route]="trajet"></app-route>
